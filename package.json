@@ -1,0 +1,33 @@
+{
+  "name": "truffle-plugin-modularizer",
+  "version": "1.0.0",
+  "description": "This modularizes truffle project as a node module",
+  "main": "index.js",
+  "scripts": {
+    "test": "./scripts/test.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/james-lim/truffle-plugin-modularizer.git"
+  },
+  "keywords": [
+    "truffle",
+    "plugin",
+    "modularize",
+    "contract"
+  ],
+  "author": "Wanseob Lim",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/james-lim/truffle-plugin-modularizer/issues"
+  },
+  "homepage": "https://github.com/james-lim/truffle-plugin-modularizer#readme",
+  "devDependencies": {
+    "ganache-cli": "^6.3.0",
+    "mocha": "^5.2.0",
+    "truffle": "^5.0.3"
+  },
+  "dependencies": {
+    "truffle-contract": "^4.0.4"
+  }
+}

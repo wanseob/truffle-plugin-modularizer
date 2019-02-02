@@ -1,0 +1,5 @@
+{
+  "commands": {
+    "modularize": "index.js"
+  }
+}

@@ -1,3 +1,10 @@
+# Build artifacts of sample truffle
+sample-truffle/build
+sample-truffle/node_modules
+
+# IDE
+.idea/
+
 # Logs
 logs
 *.log

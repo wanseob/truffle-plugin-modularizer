@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "truffle-plugin-modularizer": "file:.."
+  }
+}
