@@ -25,11 +25,12 @@ $ tree -L 1
 **Step 2: Configure *package.json* file**
 
 If you don't have *package.json*, run `npm init` and set your entrypoint to contracts.js
-```json
+```js
+// package.json
 {
   "name": "your-project-name",
+  "main": "contracts.js",
   ...
-  "main": "contracts.js"
 }
 ```
 Or when you have your own entry point like *index.js*,
@@ -71,9 +72,6 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Web3 from 'web3';
 import { YourContract } from 'your-project-name'
-...
-const web3Provider = web3.currentProvider()
-
 
 class App extends Component {
   constructor() {
