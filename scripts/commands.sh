@@ -53,7 +53,7 @@ migrate_sample_project() {
 
 modularize_sample_project() {
   go_to_sample_project
-  npm install
+  npm install ../
   ../node_modules/.bin/truffle run modularize
   [ $? -ne 0 ] && exit 1
 }
