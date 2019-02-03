@@ -24,6 +24,24 @@ before_deploy:
     fi;
 
 deploy:
+  - provider: npm
+    email: email@wanseob.com
+    api_key:
+      secure: bPNwBD02SzxuyA8HVJRJ9ExVqtngQ2SM0Ru6CFe0gmkz/gP2BAOc38Bl7a2ZGh4zPgE2D3WcnBrdEFQ7+a78o5dzoF0N/51+FuVVGdl8k7W9Xx96mXMRcuHk9SdJi8nYnTRy/9wlQV7iLsCGLU6mKgRSEwaw8GYldNJdq884OLjOqCSuagj3qvZV0jdNOmR2qhiwKoE1yQEqtUiwHVBRxJTbD2XirjcounrShvxrWBtZapdCcmG+KRKRCnZeTn+xHHqkBCBhMmCHKr5T6Rxina2w3cifZQWe/XBv7aSIxn42JaBAMT+45T3c2bnzWNHBDkRqxMCWjbiSVoALL0tYWMMbaNJZ43VfAXyXArl7WIOT5a6ybp7+l1MZOAlcS32SXSBR6kvnCK8k5CyMWRhW5RrVh0To/qokXAhedMKN/FM2K0BLzhXaw3QK8cUqeo6bgM3Ca6uqw7UQyd+S22iPSTrHlzovPTGV6RiRkO7yhALrmo4CziH/zhR1Ha+LH4dHmjC3w6a683d+Vafo3zGQUNBdgTj1aaydbUMjpnKdSpib7UvRGzGVTL5P7odG5G+AGbxzEYv/5CxEpXTmKPh1LH4E80wHZeLXddn5unDU8FbCZv96n3sGyJjZv0cQN6Mc5ErVpf4MfS36Sb6ZLImPTsBhPA/tIDetFV9A2lDPcvw=
+    tag: next
+    on:
+      condition: $NEXT != $CURRENT_VERSION
+      branch: develop
+      repo: wanseob/truffle-plugin-modularizer
+  - provider: npm
+    email: email@wanseob.com
+    api_key:
+      secure: bPNwBD02SzxuyA8HVJRJ9ExVqtngQ2SM0Ru6CFe0gmkz/gP2BAOc38Bl7a2ZGh4zPgE2D3WcnBrdEFQ7+a78o5dzoF0N/51+FuVVGdl8k7W9Xx96mXMRcuHk9SdJi8nYnTRy/9wlQV7iLsCGLU6mKgRSEwaw8GYldNJdq884OLjOqCSuagj3qvZV0jdNOmR2qhiwKoE1yQEqtUiwHVBRxJTbD2XirjcounrShvxrWBtZapdCcmG+KRKRCnZeTn+xHHqkBCBhMmCHKr5T6Rxina2w3cifZQWe/XBv7aSIxn42JaBAMT+45T3c2bnzWNHBDkRqxMCWjbiSVoALL0tYWMMbaNJZ43VfAXyXArl7WIOT5a6ybp7+l1MZOAlcS32SXSBR6kvnCK8k5CyMWRhW5RrVh0To/qokXAhedMKN/FM2K0BLzhXaw3QK8cUqeo6bgM3Ca6uqw7UQyd+S22iPSTrHlzovPTGV6RiRkO7yhALrmo4CziH/zhR1Ha+LH4dHmjC3w6a683d+Vafo3zGQUNBdgTj1aaydbUMjpnKdSpib7UvRGzGVTL5P7odG5G+AGbxzEYv/5CxEpXTmKPh1LH4E80wHZeLXddn5unDU8FbCZv96n3sGyJjZv0cQN6Mc5ErVpf4MfS36Sb6ZLImPTsBhPA/tIDetFV9A2lDPcvw=
+    tag: latest
+    on:
+      condition: $LATEST != $CURRENT_VERSION
+      branch: master
+      repo: wanseob/truffle-plugin-modularizer
   - provider: releases
     api_key:
       secure: xrf6Yh9M084GgoQl8lO13wBaDPMVAy3H1j24pFqywy8x/7mmPoGO9g+tpuiCVYBkVozI1y9npthvWu+gAUQCxvkju5UoNRgPw4My82usdE9z6OhQjh0Wh3CnH8F3BPO/jCj5vUS56oDbHsi/7tJehiqsNa2uyGDMOsVApCwQMiAsYx+X0YX8yFpn1Up79hTCPxUYFdmVOeLqB1wHfsRjB1JzzQiNUOsGFyLIlj6n+2r7hg7EbjW3ainjb0g0mc6ASE1FpZU9vYE33MQaloKmjLw/cCHhxzr9CA/SckfoFVR2w8XqC71gMunRlk+K4oUHaVRwFaALpXiIx+RBxYVf2QVdkITkVl6bCZJpTBwsX5tAdwwhGX7nnfyKlr1Eu3PPjt7VnyAMr6a+SYrB9yfR2zyB/fiPx3UbiZsab7wxyQ3b83gP7Dj3/k0cwt9es2Em1L/aMYI8VhdXMkuqYnUvVHIliuKG+FthtVc7HO4RXelObiPIHTwqShOCHqBuO1XBToEAbLmuVjmeu43xXOBDTNht3QiiXBtNJO0bbmVrGPIzHgGxOdjrkFsCtzuMfpKPceMxAeZXD2CpM1eDrKKxT9unyJ0Hs4SyWKV0svosKNfdzzCn7CllylrS+Sgz+1n3jrp0yM41CACYb3+sb75aP/kLboZvntJNVd8vL4ZnNpY=
