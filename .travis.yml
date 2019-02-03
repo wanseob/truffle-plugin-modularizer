@@ -1,0 +1,41 @@
+language: node_js
+node_js:
+  - "stable"
+
+install:
+  - npm install
+
+script:
+  - npm run test
+
+after_success:
+  - export CURRENT_VERSION=$(node -p "require('./package.json').version")
+  - export LATEST=$(npm view $(node -p "require('./package.json').name") dist-tags.latest)
+  - export NEXT=$(npm view $(node -p "require('./package.json').name") dist-tags.next)
+
+before_deploy:
+  - if [ "$LATEST" != "$CURRENT_VERSION" ] && [ "$TRAVIS_BRANCH" = "master" ]; then
+      echo "on master branch";
+      export TRAVIS_TAG=v$CURRENT_VERSION;
+    fi;
+  - if [ "$NEXT" != "$CURRENT_VERSION" ] && [ "$TRAVIS_BRANCH" = "develop" ]; then
+      echo "on develop branch";
+      export TRAVIS_TAG=v$CURRENT_VERSION-next;
+    fi;
+
+deploy:
+  - provider: releases
+    api_key:
+      secure: xrf6Yh9M084GgoQl8lO13wBaDPMVAy3H1j24pFqywy8x/7mmPoGO9g+tpuiCVYBkVozI1y9npthvWu+gAUQCxvkju5UoNRgPw4My82usdE9z6OhQjh0Wh3CnH8F3BPO/jCj5vUS56oDbHsi/7tJehiqsNa2uyGDMOsVApCwQMiAsYx+X0YX8yFpn1Up79hTCPxUYFdmVOeLqB1wHfsRjB1JzzQiNUOsGFyLIlj6n+2r7hg7EbjW3ainjb0g0mc6ASE1FpZU9vYE33MQaloKmjLw/cCHhxzr9CA/SckfoFVR2w8XqC71gMunRlk+K4oUHaVRwFaALpXiIx+RBxYVf2QVdkITkVl6bCZJpTBwsX5tAdwwhGX7nnfyKlr1Eu3PPjt7VnyAMr6a+SYrB9yfR2zyB/fiPx3UbiZsab7wxyQ3b83gP7Dj3/k0cwt9es2Em1L/aMYI8VhdXMkuqYnUvVHIliuKG+FthtVc7HO4RXelObiPIHTwqShOCHqBuO1XBToEAbLmuVjmeu43xXOBDTNht3QiiXBtNJO0bbmVrGPIzHgGxOdjrkFsCtzuMfpKPceMxAeZXD2CpM1eDrKKxT9unyJ0Hs4SyWKV0svosKNfdzzCn7CllylrS+Sgz+1n3jrp0yM41CACYb3+sb75aP/kLboZvntJNVd8vL4ZnNpY=
+    on:
+      tags: true
+      repo: wanseob/truffle-plugin-modularizer
+      branch: master
+  - provider: releases
+    prerelease: true
+    api_key:
+      secure: xrf6Yh9M084GgoQl8lO13wBaDPMVAy3H1j24pFqywy8x/7mmPoGO9g+tpuiCVYBkVozI1y9npthvWu+gAUQCxvkju5UoNRgPw4My82usdE9z6OhQjh0Wh3CnH8F3BPO/jCj5vUS56oDbHsi/7tJehiqsNa2uyGDMOsVApCwQMiAsYx+X0YX8yFpn1Up79hTCPxUYFdmVOeLqB1wHfsRjB1JzzQiNUOsGFyLIlj6n+2r7hg7EbjW3ainjb0g0mc6ASE1FpZU9vYE33MQaloKmjLw/cCHhxzr9CA/SckfoFVR2w8XqC71gMunRlk+K4oUHaVRwFaALpXiIx+RBxYVf2QVdkITkVl6bCZJpTBwsX5tAdwwhGX7nnfyKlr1Eu3PPjt7VnyAMr6a+SYrB9yfR2zyB/fiPx3UbiZsab7wxyQ3b83gP7Dj3/k0cwt9es2Em1L/aMYI8VhdXMkuqYnUvVHIliuKG+FthtVc7HO4RXelObiPIHTwqShOCHqBuO1XBToEAbLmuVjmeu43xXOBDTNht3QiiXBtNJO0bbmVrGPIzHgGxOdjrkFsCtzuMfpKPceMxAeZXD2CpM1eDrKKxT9unyJ0Hs4SyWKV0svosKNfdzzCn7CllylrS+Sgz+1n3jrp0yM41CACYb3+sb75aP/kLboZvntJNVd8vL4ZnNpY=
+    on:
+      tags: true
+      repo: wanseob/truffle-plugin-modularizer
+      branch: develop
