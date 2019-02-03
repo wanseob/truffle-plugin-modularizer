@@ -1,70 +1,72 @@
 # truffle-plugin-modularizer
 
-Truffle plugin to export built contract artifacts as a Javascript module 
+Truffle plugin to export built contract artifacts as a Javascript module
+
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+[![npm](https://img.shields.io/npm/v/truffle-plugin-modularizer/latest.svg)](https://www.npmjs.com/package/merklux)
+[![Build Status](https://travis-ci.org/wanseob/truffle-plugin-modularizer.svg?branch=master)](https://travis-ci.org/wanseob/truffle-plugin-modularizer)
 
 # Motivation
 
-When we make a DApp, we usually use truffle and ReactJS or VueJS together. But to integrate the front-end with the truffle contracts, we had to integrate the repositories also. Because integrating contracts & front-end app in a repository increases complexity, it might be better to seperate them. Therefore, this library offers a easy way to package and publish the smart contracts on the npm library, and then you can easily use the contracts with truffle-contract instance in a seperated ReactJS or VueJS applications. 
+When we make a DApp, we usually use truffle and ReactJS or VueJS together. But to integrate the front-end with the truffle contracts, we had to integrate the repositories also. Because integrating contracts & front-end app in a repository increases complexity, it might be better to seperate them. Therefore, this library offers a easy way to package and publish the smart contracts on the npm library, and then you can easily use the contracts with truffle-contract instance in a seperated ReactJS or VueJS application. 
+
+**Now, let's import truffle projects into NodeJS applications more easily**
 
 # How to use (from scratch)
-
-**Step 1: Start your truffle project**
-
-Your project might have following project structure
-```bash
-$ npm install -g truffle # Skip if you already have truffle binary
-$ truffle init
-$ tree -L 1
-.
-├── contracts
-├── migrations
-├── test
-└── truffle-config.js
-```
-
-**Step 2: Configure *package.json* file**
-
-If you don't have *package.json*, run `npm init` and set your entrypoint to contracts.js
-```js
-// package.json
-{
-  "name": "your-project-name",
-  "main": "contracts.js",
-  ...
-}
-```
-Or when you have your own entry point like *index.js*,
-```javascript
-/** index.js */
-const { contracts } = require('./contracts')
-module.exports = {
-  ...,
-  contracts
-}
-```
-
-**Step 3: Install `truffle-plugin-modularizer` plugin**
+ 
+#### **Step 1: Install plugin**
 
 ```bash
 $ npm install --save-dev truffle-plugin-modularizer
 ```
 
-**Step 4: Build contracts and run modularize, then publish**
+#### **Step 2: Modify your *truffle-config.json* to configure plugin**
+
+```javascript
+// truffle-config.js
+module.exports = {
+  ...,
+  plugins: [
+    'truffle-plugin-modularizer'
+  ],
+  modularizer: {
+    // output: 'src/index.js',
+    // artifacts: 'build/contracts'
+  },
+  ...
+}
+```
+#### **Step 3: Build contracts and run modularize**
 
 ```
 $ truffle compile
+$ truffle migrate
 $ truffle run modularize
-$ npm run publish
+```
+This command generates *src/index.js* file.
+
+#### **Step 4: Configure *package.json* file & publish**
+
+If you don't have *package.json*, run `npm init` and set your entrypoint
+```js
+// package.json
+{
+  "name": "your-project-name",
+  "main": "src/index.js",
+  ...
+}
+
+$ npm publish
 ```
 
-**Step 5: Use your deployed package in your ReactJS applicaton**
+#### **Step 5: Use the deployed contract package in your ReactJS applicaton**
 
 ```
 $ cd /your/react/app/path
 $ npm install --save "your-project-name"
 ```
 
-**Step 6: Import contracts into your front-end application and init with web3 provider**
+#### **Step 6: Import contracts into your front-end application and init with web3 provider**
 
 ```jsx
 // FILE: App.js
@@ -103,3 +105,5 @@ class App extends Component {
 export default App;
 ReactDOM.render(<App />, document.getElementById("app"));
 ```
+
+You can read the test cases [here](test/modularizer.test.js)
