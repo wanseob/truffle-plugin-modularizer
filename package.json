@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/james-lim/truffle-plugin-modularizer.git"
+    "url": "git+https://github.com/wanseob/truffle-plugin-modularizer.git"
   },
   "keywords": [
     "truffle",
@@ -22,9 +22,9 @@
   "author": "Wanseob Lim",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/james-lim/truffle-plugin-modularizer/issues"
+    "url": "https://github.com/wanseob/truffle-plugin-modularizer/issues"
   },
-  "homepage": "https://github.com/james-lim/truffle-plugin-modularizer#readme",
+  "homepage": "https://github.com/wanseob/truffle-plugin-modularizer#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-bignumber": "^3.0.0",

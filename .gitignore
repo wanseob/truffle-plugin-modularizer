@@ -2,6 +2,7 @@
 sample-truffle/build
 sample-truffle/node_modules
 sample-truffle/src
+sample-truffle/package-lock.json
 
 # IDE
 .idea/
