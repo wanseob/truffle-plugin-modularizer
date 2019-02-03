@@ -42,10 +42,10 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     test: {
-      host: '127.0.0.1',     // Localhost (default: none)
-      port: 8777,            // Standard Ethereum port (default: none)
-      network_id: '1243',       // Any network (default: none)
-    },
+      host: '127.0.0.1', // Localhost (default: none)
+      port: 8777, // Standard Ethereum port (default: none)
+      network_id: '1243' // Any network (default: none)
+    }
 
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
@@ -67,13 +67,16 @@ module.exports = {
   },
 
   // Set default mocha options here, use special reporters etc.
-  mocha:
-    {
-      // timeout: 100000
-    }
-  ,
+  mocha: {
+    // timeout: 100000
+  },
 
-// Configure your compilers
+  modularizer: {
+    // output: 'src/index.js',
+    // artifacts: 'build/contracts'
+  },
+
+  // Configure your compilers
   compilers: {
     solc: {
       // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
@@ -86,10 +89,8 @@ module.exports = {
       //  evmVersion: "byzantium"
       // }
     }
-    ,
-  }
-  ,
+  },
   plugins: [
-    'truffle-plugin-modularizer',
-  ],
+    'truffle-plugin-modularizer'
+  ]
 }

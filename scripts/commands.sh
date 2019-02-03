@@ -40,7 +40,8 @@ kill_sample_net() {
 
 compile_sample_project() {
   go_to_sample_project
-  ../node_modules/.bin/truffle compile
+  rm -rf build
+  ../node_modules/.bin/truffle compile --all
   [ $? -ne 0 ] && exit 1
 }
 
