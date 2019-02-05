@@ -55,15 +55,16 @@ const modularize = (targetPath, outputPath, includesOnly) => {
     // Make directory if it does not exist
     fs.mkdir(path.dirname(outputPath), { recursive: true }, (err) => {
       if (err) reject(err)
-    })
-
-    // Write a script
-    fs.writeFile(outputPath, lintResult.results[0].output, function (err) {
-      if (err) {
-        return reject(err)
+      else {
+        // Write a script after create the target directory
+        fs.writeFile(outputPath, lintResult.results[0].output, function (err) {
+          if (err) {
+            return reject(err)
+          }
+          console.log('Successfully modularize contracts')
+          resolve()
+        })
       }
-      console.log('Successfully modularize contracts')
-      resolve()
     })
   })
 }
