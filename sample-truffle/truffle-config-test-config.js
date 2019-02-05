@@ -9,7 +9,7 @@ module.exports = {
   modularizer: {
     output: 'src/custom/index.js',
     target: 'build/custom/contracts',
-    includesOnly: [
+    includeOnly: [
       'SampleContract'
     ]
   },

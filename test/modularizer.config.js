@@ -14,11 +14,11 @@ describe('Test for truffle-config.js configuration', () => {
         truffleConfig.modularizer.target.should.equal('build/custom/contracts')
         truffleConfig.contracts_build_directory.should.equal('build/custom/contracts')
       })
-    it('includesOnly should be ["SampleContract"]', () => {
+    it('includeOnly should be ["SampleContract"]', () => {
       truffleConfig.modularizer
-        .should.have.property('includesOnly')
+        .should.have.property('includeOnly')
         .with.lengthOf(1)
-      truffleConfig.modularizer.includesOnly[0].should.equal('SampleContract')
+      truffleConfig.modularizer.includeOnly[0].should.equal('SampleContract')
     })
   })
   describe('src/custom/index.js', () => {

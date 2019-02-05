@@ -12,11 +12,11 @@ describe('Test for cli argument', () => {
     it('should have wrong target value', () => {
       truffleConfig.modularizer.target.should.equal('build/wrong/contracts')
     })
-    it('should have wrong includesOnly value', () => {
+    it('should have wrong includeOnly value', () => {
       truffleConfig.modularizer
-        .should.have.property('includesOnly')
+        .should.have.property('includeOnly')
         .with.lengthOf(1)
-      truffleConfig.modularizer.includesOnly[0].should.equal('Wrong')
+      truffleConfig.modularizer.includeOnly[0].should.equal('Wrong')
     })
   })
   describe('src/custom/index.js', () => {

@@ -3,7 +3,7 @@
 Truffle plugin to export built contract artifacts as a Javascript module
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
-[![npm](https://img.shields.io/npm/v/truffle-plugin-modularizer/latest.svg)](https://www.npmjs.com/package/merklux)
+[![npm](https://img.shields.io/npm/v/truffle-plugin-modularizer/latest.svg)](https://www.npmjs.com/package/truffle-plugin-modularizer)
 [![Build Status](https://travis-ci.org/wanseob/truffle-plugin-modularizer.svg?branch=master)](https://travis-ci.org/wanseob/truffle-plugin-modularizer)
 
 # Motivation
@@ -22,7 +22,7 @@ Modularizer to export your truffle project as a node module
 Usage: truffle run modularize [options] [CONTRACT_NAMES...]
 
 If CONTRACT_NAMES is ommitted and there's no setting in truffle-config.js,
-this will modularize all contracts in the built/contracts directory
+this will modularize all contracts in the build/contracts directory
 
 Options:
 
@@ -38,7 +38,7 @@ You can store your custom settings in truffle-config.js
     {
       output: "src/index.js",
       target: "build/contracts",
-      includesOnly: [
+      includeOnly: [
         "FirstContractName",
         "SecondContractName"
       ]
@@ -67,7 +67,7 @@ module.exports = {
   modularizer: {
     // output: 'src/index.js',
     // target: 'build/contracts'
-    // includesOnly: []
+    // includeOnly: []
   },
   ...
 }

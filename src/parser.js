@@ -11,7 +11,7 @@ const assertBool = (param, message) => {
 /**
  * This parses truffle config from cli arguments and truffle-config.js
  * @param config Truffle config object
- * @return {{targetPath: string, outputPath: string, includesOnly: *}}
+ * @return {{targetPath: string, outputPath: string, includeOnly: *}}
  */
 const parse = (config) => {
   // -t, --target    Path to read built artifacts of contracts. default path is 'build/contracts
@@ -26,7 +26,7 @@ const parse = (config) => {
   assertBool(config.all, '--all should have no argument')
 
   // Get the path of target artifacts
-  let targetPath, outputPath, includesOnly
+  let targetPath, outputPath, includeOnly
 
   // Parse targetPath
   if (config.target || config.t) {
@@ -55,21 +55,21 @@ const parse = (config) => {
     outputPath = path.join(config.working_directory, 'src', 'index.js')
   }
 
-  // Parse includesOnly
+  // Parse includeOnly
   if (config.all) {
     // cli options are first, includes all contracts in the target dircetory
-    includesOnly = undefined
+    includeOnly = undefined
   } else if (config._.length > 1) {
     // if there's no --all flag and it receives arguments from cli
-    includesOnly = config._.slice(1)
-  } else if (config.modularizer && config.modularizer.includesOnly) {
+    includeOnly = config._.slice(1)
+  } else if (config.modularizer && config.modularizer.includeOnly) {
     // if there's no --all flag, and no args from cli, check truffle-config.js
-    includesOnly = config.modularizer.includesOnly
+    includeOnly = config.modularizer.includeOnly
   } else {
     // default setting, includes all
-    includesOnly = undefined
+    includeOnly = undefined
   }
-  return { targetPath, outputPath, includesOnly }
+  return { targetPath, outputPath, includeOnly }
 }
 
 module.exports = {

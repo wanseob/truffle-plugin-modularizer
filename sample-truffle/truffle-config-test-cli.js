@@ -9,7 +9,7 @@ module.exports = {
   modularizer: {
     output: 'src/wrong/index.js',
     target: 'build/wrong/contracts',
-    includesOnly: [
+    includeOnly: [
       'Wrong'
     ]
   },

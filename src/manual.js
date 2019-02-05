@@ -22,7 +22,7 @@ module.exports = {
     console.log(`    {`)
     console.log(`      output: "src/index.js",`)
     console.log(`      target: "build/contracts",`)
-    console.log(`      includesOnly: [`)
+    console.log(`      includeOnly: [`)
     console.log(`        "FirstContractName",`)
     console.log(`        "SecondContractName"`)
     console.log(`      ]`)

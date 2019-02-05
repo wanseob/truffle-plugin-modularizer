@@ -17,8 +17,8 @@ module.exports = async (config) => {
   }
 
   // Parse arguments
-  let { targetPath, outputPath, includesOnly } = parse(config)
+  let { targetPath, outputPath, includeOnly } = parse(config)
 
   // Modularize the contracts and write a JS file
-  await modularize(targetPath, outputPath, includesOnly)
+  await modularize(targetPath, outputPath, includeOnly)
 }

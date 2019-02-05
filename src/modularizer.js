@@ -14,7 +14,7 @@ const toFactoryScript = (contractName) => {
     }`
 }
 
-const modularize = (targetPath, outputPath, includesOnly) => {
+const modularize = (targetPath, outputPath, includeOnly) => {
   // Read contract file names. Usually ContractName.json in build/contracts
   const contracts = fs.readdirSync(targetPath)
 
@@ -23,8 +23,8 @@ const modularize = (targetPath, outputPath, includesOnly) => {
     // Get contract name removing the file extension  ".json"
     let contractName = contract.slice(0, -5)
 
-    // Pass when if includesOnly is defined and it does not include this contract
-    if (includesOnly && !includesOnly.includes(contractName)) continue
+    // Pass when if includeOnly is defined and it does not include this contract
+    if (includeOnly && !includeOnly.includes(contractName)) continue
 
     // Objectify json file
     let obj = JSON.parse(fs.readFileSync(`${targetPath}/${contract}`, 'utf8'))
