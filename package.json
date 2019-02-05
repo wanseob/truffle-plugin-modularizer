@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "standard": "./node_modules/.bin/standard test/** index.js --fix",
-    "ethlint": "./node_modules/.bin/solium -d sample-truffle/contracts",
+    "ethlint": "./node_modules/.bin/solium -d sample-truffle/contracts --fix",
     "precommit": "lint-staged && npm run test",
     "test": "./scripts/test.sh"
   },
@@ -59,11 +59,11 @@
   },
   "lint-staged": {
     "*.js": [
-      "npm run standard",
+      "./node_modules/.bin/standard --fix",
       "git add"
     ],
     "*.sol": [
-      "npm run ethlint",
+      "./node_modules/.bin/solium --fix --file",
       "git add"
     ]
   }
