@@ -1,6 +1,6 @@
 {
   "name": "truffle-plugin-modularizer",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "This modularizes truffle project as a node module",
   "main": "src/index.js",
   "scripts": {
