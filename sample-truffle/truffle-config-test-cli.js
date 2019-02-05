@@ -7,11 +7,11 @@ module.exports = {
     }
   },
   modularizer: {
-    // output: 'src/index.js',
-    // target: 'build/contracts',
-    // includesOnly: [
-    //   'SampleContract',
-    // ],
+    output: 'src/wrong/index.js',
+    target: 'build/wrong/contracts',
+    includesOnly: [
+      'Wrong'
+    ]
   },
   plugins: [
     'truffle-plugin-modularizer'

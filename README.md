@@ -12,6 +12,41 @@ When we make a DApp, we usually use truffle and ReactJS or VueJS together. But t
 
 **Now, let's import truffle projects into NodeJS applications more easily**
 
+# Usage (after plugin setting)
+
+```bash
+$ truffle run modularize --help
+
+Modularizer to export your truffle project as a node module
+
+Usage: truffle run modularize [options] [CONTRACT_NAMES...]
+
+If CONTRACT_NAMES is ommitted and there's no setting in truffle-config.js,
+this will modularize all contracts in the built/contracts directory
+
+Options:
+
+   -o, --output <path>   Path to write modularized js file. default path is src/index.js'
+   -t, --target <path>   Path to read built artifacts of contracts. default path is 'build/contracts'
+   -a, --all             It will modularize all contracts
+
+You can store your custom settings in truffle-config.js
+
+{
+  ...,
+  modularizer:
+    {
+      output: "src/index.js",
+      target: "build/contracts",
+      includesOnly: [
+        "FirstContractName",
+        "SecondContractName"
+      ]
+    },
+  ...
+}
+```
+
 # How to use (from scratch)
  
 #### **Step 1: Install plugin**
@@ -31,14 +66,15 @@ module.exports = {
   ],
   modularizer: {
     // output: 'src/index.js',
-    // artifacts: 'build/contracts'
+    // target: 'build/contracts'
+    // includesOnly: []
   },
   ...
 }
 ```
 #### **Step 3: Build contracts and run modularize**
 
-```
+```bash
 $ truffle compile
 $ truffle migrate
 $ truffle run modularize
@@ -69,7 +105,7 @@ $ npm install --save "your-project-name"
 #### **Step 6: Import contracts into your front-end application and init with web3 provider**
 
 ```jsx
-// FILE: App.js
+// ex: ReactJS, file: App.js
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Web3 from 'web3';
@@ -83,7 +119,7 @@ class App extends Component {
   async componentDidMount() {
     const web3Provider = web3.currentProvider // or use your custom web3 provider
     const yourContract = await YourContract(web3Provider).at("0xCONTRACT_ADDRESS") 
-    // const yourContract = await YourContract(web3Provider).default()
+    // const yourContract = await YourContract(web3Provider).deployed()
     // const yourContract = await YourContract(web3Provider).new()
     const values = await yourContract.getValues() // Assue that this returns an BigNumber array
     this.setState({ values });
@@ -106,4 +142,50 @@ export default App;
 ReactDOM.render(<App />, document.getElementById("app"));
 ```
 
-You can read the test cases [here](test/modularizer.test.js)
+You can read the test cases [here](test/modularizer.default.js)
+
+# Contribute
+
+1. Fork & clone
+
+    ```bash
+    git clone https://github.com/{your-id}/truffle-plugin-modularizer
+    ```
+
+1. Install packages & run test cases
+
+    ```bash
+    npm install
+    npm run test
+    ```
+    
+1. Modify sample contracts & add some features
+
+    ```bash
+    vim src/index.js # entry point
+    vim src/modualrizer.js # exports Contract.json files to js module
+    vim src/parser.js # option parser
+    vim src/manual.js # prints manual for this plugin
+    vim sample-truffle/contracts/SampleContract.sol # Sample contract for testing
+    ```
+    
+1. Add test cases for new features
+
+    ```bash
+    vim test/modularizer.default.js # test cases for default setup
+    vim test/modularizer.config.js # test cases for truffle-config.js options
+    vim test/modularizer.cli.js # test cases for cli options
+    ```
+
+1. Run test & commit (Read [conventional commit](https://www.conventionalcommits.org))
+    
+    Husky will automatically run linter & test cases 
+    
+    ```bash
+    npm run test
+    git add . && git commit -m "feat: add a new feature ~~"
+    ```
+
+# License
+
+[Apache-2.0](#LICENSE)

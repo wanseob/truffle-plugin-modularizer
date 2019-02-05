@@ -7,12 +7,13 @@ module.exports = {
     }
   },
   modularizer: {
-    // output: 'src/index.js',
-    // target: 'build/contracts',
-    // includesOnly: [
-    //   'SampleContract',
-    // ],
+    output: 'src/custom/index.js',
+    target: 'build/custom/contracts',
+    includesOnly: [
+      'SampleContract'
+    ]
   },
+  contracts_build_directory: 'build/custom/contracts',
   plugins: [
     'truffle-plugin-modularizer'
   ]

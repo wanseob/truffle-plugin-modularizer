@@ -2,9 +2,9 @@
   "name": "truffle-plugin-modularizer",
   "version": "1.0.1",
   "description": "This modularizes truffle project as a node module",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "standard": "./node_modules/.bin/standard test/** index.js --fix",
+    "standard": "./node_modules/.bin/standard test/** src/** --fix",
     "ethlint": "./node_modules/.bin/solium -d sample-truffle/contracts --fix",
     "precommit": "lint-staged && npm run test",
     "test": "./scripts/test.sh"
