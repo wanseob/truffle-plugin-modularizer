@@ -41,7 +41,11 @@ You can store your custom settings in truffle-config.js
       includeOnly: [
         "FirstContractName",
         "SecondContractName"
-      ]
+      ], // if you don\'t configure includeOnly property, it will save all contracts
+      networks: [
+        1,
+        2
+      ] // if you don\'t configure networks property, it will save all networks
     },
   ...
 }
@@ -67,7 +71,8 @@ module.exports = {
   modularizer: {
     // output: 'src/index.js',
     // target: 'build/contracts'
-    // includeOnly: []
+    // includeOnly: [],
+    // networks: []
   },
   ...
 }
