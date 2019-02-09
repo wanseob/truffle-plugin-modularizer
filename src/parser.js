@@ -65,7 +65,7 @@ const parse = (config) => {
     let networkName = config.network ? config.network : config.n
     let network = config.networks[networkName]
     if (!network) throw Error(`network ${config.network} is not defined in the truffle config file`)
-    networks = [network.network_id]
+    networks = [network.network_id.toString()]
   } else if (config.modularizer && config.modularizer.networks) {
     // if there's no cli option, check truffle-config.js
     networks = config.modularizer.networks
