@@ -20,13 +20,25 @@ describe('Test for truffle-config.js configuration', () => {
         .with.lengthOf(1)
       truffleConfig.modularizer.includeOnly[0].should.equal('SampleContract')
     })
+    it('networks should be [1243]', () => {
+      truffleConfig.modularizer
+        .should.have.property('networks')
+        .with.lengthOf(1)
+      truffleConfig.modularizer.networks[0].should.equal(1243)
+    })
   })
   describe('src/custom/index.js', () => {
-    it('Should not includes Migrations function in the module', () => {
+    it('Should not include Migrations function in the module', () => {
       modularizedTruffleProject.should.not.have.property('Migrations')
     })
-    it('Should includes SampleContract function in the module', () => {
+    it('Should include SampleContract function in the module', () => {
       modularizedTruffleProject.should.have.property('SampleContract')
+    })
+    it('Should not include any network information', () => {
+      Object.keys(modularizedTruffleProject.SampleContract('http://127.0.0.1:8777').networks).forEach(
+        id => {
+          truffleConfig.modularizer.networks.map(networkId => networkId.toString()).includes(id).should.equal(true)
+        })
     })
   })
 })

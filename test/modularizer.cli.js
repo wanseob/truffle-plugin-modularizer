@@ -20,10 +20,10 @@ describe('Test for cli argument', () => {
     })
   })
   describe('src/custom/index.js', () => {
-    it('Should not includes Migrations function in the module', () => {
+    it('Should not include Migrations function in the module', () => {
       modularizedTruffleProject.should.not.have.property('Migrations')
     })
-    it('Should includes SampleContract function in the module', () => {
+    it('Should include SampleContract function in the module', () => {
       modularizedTruffleProject.should.have.property('SampleContract')
     })
   })

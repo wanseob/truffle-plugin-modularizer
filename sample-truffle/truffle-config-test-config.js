@@ -11,6 +11,9 @@ module.exports = {
     target: 'build/custom/contracts',
     includeOnly: [
       'SampleContract'
+    ],
+    networks: [
+      1243
     ]
   },
   contracts_build_directory: 'build/custom/contracts',

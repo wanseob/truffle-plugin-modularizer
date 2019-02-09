@@ -26,7 +26,7 @@ const parse = (config) => {
   assertBool(config.all, '--all should have no argument')
 
   // Get the path of target artifacts
-  let targetPath, outputPath, includeOnly
+  let targetPath, outputPath, includeOnly, networks
 
   // Parse targetPath
   if (config.target || config.t) {
@@ -69,7 +69,18 @@ const parse = (config) => {
     // default setting, includes all
     includeOnly = undefined
   }
-  return { targetPath, outputPath, includeOnly }
+
+  // Parse networks
+  if (config.modularizer && config.modularizer.networks) {
+    networks = config.modularizer.networks
+    // TODO type check (array)
+    networks = networks.map(networkId => networkId.toString())
+  } else {
+    // default setting, includes all networks
+    networks = undefined
+  }
+
+  return { targetPath, outputPath, includeOnly, networks }
 }
 
 module.exports = {
