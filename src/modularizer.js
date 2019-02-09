@@ -7,10 +7,8 @@ const javascriptStringify = require('javascript-stringify')
  * It makes a script with factory pattern to return truffle-contract instance
  */
 const toFactoryScript = (contractName) => {
-  return `${contractName}: function(web3Provider = undefined) {
-            const contract = truffleContract(artifacts.${contractName})
-            contract.setProvider(web3Provider)
-            return contract
+  return `${contractName}: function(web3 = undefined) {
+            return makeTruffleContract('${contractName}', web3)
     }`
 }
 
@@ -54,7 +52,24 @@ const modularize = (targetPath, outputPath, includeOnly, networks) => {
       
     const truffleContract = require('truffle-contract')
     const artifacts = ${javascriptStringify(artifacts)}
-      
+    
+    function makeTruffleContract(contractName, web3 = undefined) {
+      const contract = truffleContract(artifacts[contractName])
+      if(web3 && web3.constructor) {
+        if(web3.constructor.name === 'Web3') {
+          contract.setProvider(web3.currentProvider)
+          contract.web3 = web3
+        } else if (web3.constructor.name.includes('Provider') || typeof web3 === 'string') {
+          // Backward compatibility
+          process.emitWarning('It is recommended to use a Web3 instance instead of Web3Provider')
+          contract.setProvider(web3)
+        } else {
+          throw Error('You should provide a valid web3 instance')
+        }
+      }
+      return contract
+    }
+    
     module.exports = {
       ${Object.keys(artifacts).map(toFactoryScript).join(',')}
     }

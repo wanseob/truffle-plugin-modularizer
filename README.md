@@ -123,10 +123,10 @@ class App extends Component {
     this.state = { data: [] };
   }
   async componentDidMount() {
-    const web3Provider = web3.currentProvider // or use your custom web3 provider
-    const yourContract = await YourContract(web3Provider).at("0xCONTRACT_ADDRESS") 
-    // const yourContract = await YourContract(web3Provider).deployed()
-    // const yourContract = await YourContract(web3Provider).new()
+    const web3 = window.web3 ? window.web3 : new Web3(yourCustomProvider)
+    const yourContract = await YourContract(web3).at("0xCONTRACT_ADDRESS") 
+    // const yourContract = await YourContract(web3).deployed()
+    // const yourContract = await YourContract(web3).new()
     const values = await yourContract.getValues() // Assue that this returns an BigNumber array
     this.setState({ values });
   }
