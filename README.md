@@ -21,13 +21,14 @@ Modularizer to export your truffle project as a node module
 
 Usage: truffle run modularize [options] [CONTRACT_NAMES...]
 
-If CONTRACT_NAMES is ommitted and there's no setting in truffle-config.js,
+If CONTRACT_NAMES is ommitted and there is no setting in truffle-config.js,
 this will modularize all contracts in the build/contracts directory
 
 Options:
 
-   -o, --output <path>   Path to write modularized js file. default path is src/index.js'
+   -o, --output <path>   Path to write modularized js file. default path is 'src/index.js'
    -t, --target <path>   Path to read built artifacts of contracts. default path is 'build/contracts'
+   -n, --network <name>  Specify name of the network to record deployed addresses to the module
    -a, --all             It will modularize all contracts
 
 You can store your custom settings in truffle-config.js

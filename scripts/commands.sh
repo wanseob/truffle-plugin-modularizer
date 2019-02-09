@@ -106,7 +106,7 @@ test_settings_with_cli_options() {
     clear_sample_project
     compile_sample_project
     migrate_sample_project
-    modularize_sample_project --output src/custom/index.js --target build/contracts SampleContract
+    modularize_sample_project --output src/custom/index.js --target build/contracts SampleContract --network test
     run_test_case test/modularizer.cli.js
 }
 

@@ -22,6 +22,10 @@ const parse = (config) => {
   assertString(config.output, '--output should have string argument')
   assertString(config.o, '-o should have string argument')
 
+  // --network      Name of the network to save
+  assertString(config.network, '--network should have string argument')
+  assertString(config.n, '-n should have string argument')
+
   // -a, --all       It will modularize all contracts
   assertBool(config.all, '--all should have no argument')
 
@@ -55,6 +59,23 @@ const parse = (config) => {
     outputPath = path.join(config.working_directory, 'src', 'index.js')
   }
 
+  // Parse networks
+  if (config.network || config.n) {
+    // cli options are first
+    let networkName = config.network ? config.network : config.n
+    let network = config.networks[networkName]
+    if (!network) throw Error(`network ${config.network} is not defined in the truffle config file`)
+    networks = [network.network_id]
+  } else if (config.modularizer && config.modularizer.networks) {
+    // if there's no cli option, check truffle-config.js
+    networks = config.modularizer.networks
+    // TODO type check (array)
+    networks = networks.map(networkId => networkId.toString())
+  } else {
+    // default setting, includes all networks
+    networks = undefined
+  }
+
   // Parse includeOnly
   if (config.all) {
     // cli options are first, includes all contracts in the target dircetory
@@ -68,16 +89,6 @@ const parse = (config) => {
   } else {
     // default setting, includes all
     includeOnly = undefined
-  }
-
-  // Parse networks
-  if (config.modularizer && config.modularizer.networks) {
-    networks = config.modularizer.networks
-    // TODO type check (array)
-    networks = networks.map(networkId => networkId.toString())
-  } else {
-    // default setting, includes all networks
-    networks = undefined
   }
 
   return { targetPath, outputPath, includeOnly, networks }
